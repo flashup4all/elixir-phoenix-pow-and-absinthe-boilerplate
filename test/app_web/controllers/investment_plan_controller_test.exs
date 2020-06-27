@@ -32,7 +32,9 @@ defmodule AppWeb.InvestmentPlanControllerTest do
 
   describe "create investment_plan" do
     test "renders investment_plan when data is valid", %{conn: conn} do
-      conn = post(conn, Routes.investment_plan_path(conn, :create), investment_plan: @create_attrs)
+      conn =
+        post(conn, Routes.investment_plan_path(conn, :create), investment_plan: @create_attrs)
+
       assert %{"id" => id} = json_response(conn, 201)["data"]
 
       conn = get(conn, Routes.investment_plan_path(conn, :show, id))
@@ -45,7 +47,9 @@ defmodule AppWeb.InvestmentPlanControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, Routes.investment_plan_path(conn, :create), investment_plan: @invalid_attrs)
+      conn =
+        post(conn, Routes.investment_plan_path(conn, :create), investment_plan: @invalid_attrs)
+
       assert json_response(conn, 422)["errors"] != %{}
     end
   end
@@ -53,8 +57,15 @@ defmodule AppWeb.InvestmentPlanControllerTest do
   describe "update investment_plan" do
     setup [:create_investment_plan]
 
-    test "renders investment_plan when data is valid", %{conn: conn, investment_plan: %InvestmentPlan{id: id} = investment_plan} do
-      conn = put(conn, Routes.investment_plan_path(conn, :update, investment_plan), investment_plan: @update_attrs)
+    test "renders investment_plan when data is valid", %{
+      conn: conn,
+      investment_plan: %InvestmentPlan{id: id} = investment_plan
+    } do
+      conn =
+        put(conn, Routes.investment_plan_path(conn, :update, investment_plan),
+          investment_plan: @update_attrs
+        )
+
       assert %{"id" => ^id} = json_response(conn, 200)["data"]
 
       conn = get(conn, Routes.investment_plan_path(conn, :show, id))
@@ -67,7 +78,11 @@ defmodule AppWeb.InvestmentPlanControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn, investment_plan: investment_plan} do
-      conn = put(conn, Routes.investment_plan_path(conn, :update, investment_plan), investment_plan: @invalid_attrs)
+      conn =
+        put(conn, Routes.investment_plan_path(conn, :update, investment_plan),
+          investment_plan: @invalid_attrs
+        )
+
       assert json_response(conn, 422)["errors"] != %{}
     end
   end

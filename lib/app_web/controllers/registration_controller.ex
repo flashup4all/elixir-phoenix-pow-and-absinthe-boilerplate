@@ -16,11 +16,11 @@ defmodule AppWeb.RegistrationController do
             access_token: conn.private[:api_access_token],
             renewal_token: conn.private[:api_renewal_token],
             user: %{
-                email: user.email,
-                mobile_no: user.mobile_no,
-                name: user.name,
-                role: user.role,
-                is_admin: user.is_admin
+              email: user.email,
+              mobile_no: user.mobile_no,
+              name: user.name,
+              role: user.role,
+              is_admin: user.is_admin
             }
           }
         })

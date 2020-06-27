@@ -30,7 +30,7 @@ config :phoenix, :json_library, Jason
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
 
-#pow config
+# pow config
 config :app, :pow,
   user: App.Users.User,
   repo: App.Repo,

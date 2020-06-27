@@ -5,22 +5,23 @@ defmodule AppWeb.SessionController do
   alias Plug.Conn
 
   @spec create(Conn.t(), map()) :: Conn.t()
-  def create(conn,  %{"email" => email, "password" => password} = user_params) do
+  def create(conn, %{"email" => email, "password" => password} = user_params) do
     conn
     |> Pow.Plug.authenticate_user(user_params)
     |> case do
       {:ok, conn} ->
         user = conn.assigns.current_user
+
         json(conn, %{
           data: %{
             access_token: conn.private[:api_access_token],
             renewal_token: conn.private[:api_renewal_token],
             user: %{
-                email: user.email,
-                mobile_no: user.mobile_no,
-                name: user.name,
-                role: user.role,
-                is_admin: user.is_admin
+              email: user.email,
+              mobile_no: user.mobile_no,
+              name: user.name,
+              role: user.role,
+              is_admin: user.is_admin
             }
           }
         })
@@ -35,8 +36,9 @@ defmodule AppWeb.SessionController do
   @spec renew(Conn.t(), map()) :: Conn.t()
   def renew(conn, _params) do
     config = Pow.Plug.fetch_config(conn)
-    IO.puts "ok"
-    IO.inspect conn
+    IO.puts("ok")
+    IO.inspect(conn)
+
     conn
     |> APIAuthPlug.renew(config)
     |> case do

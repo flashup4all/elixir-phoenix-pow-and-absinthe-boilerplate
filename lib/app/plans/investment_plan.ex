@@ -26,7 +26,33 @@ defmodule App.Plans.InvestmentPlan do
   @doc false
   def changeset(investment_plan, attrs) do
     investment_plan
-    |> cast(attrs, [:name, :type, :interest_type, :description, :minimum_amount, :interest, :company_interest, :partner_interest, :user_id, :interest_apply_type, :status, :is_admin, :duration])
-    |> validate_required([:name, :type, :interest_type, :description, :minimum_amount, :interest, :company_interest, :partner_interest, :user_id, :interest_apply_type, :duration])
+    |> cast(attrs, [
+      :name,
+      :type,
+      :interest_type,
+      :description,
+      :minimum_amount,
+      :interest,
+      :company_interest,
+      :partner_interest,
+      :user_id,
+      :interest_apply_type,
+      :status,
+      :is_admin,
+      :duration
+    ])
+    |> validate_required([
+      :name,
+      :type,
+      :interest_type,
+      :description,
+      :minimum_amount,
+      :interest,
+      :company_interest,
+      :partner_interest,
+      :user_id,
+      :interest_apply_type,
+      :duration
+    ])
   end
 end

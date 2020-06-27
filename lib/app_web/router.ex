@@ -1,6 +1,7 @@
 defmodule AppWeb.Router do
   use AppWeb, :router
   use Pow.Phoenix.Router
+
   use Pow.Extension.Phoenix.Router,
     extensions: [PowResetPassword, PowEmailConfirmation]
 
@@ -25,10 +26,9 @@ defmodule AppWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    
+
     # pow_routes()
     # pow_extension_routes()
-    
   end
 
   scope "/api" do
@@ -37,7 +37,7 @@ defmodule AppWeb.Router do
     forward "/graphiql", Absinthe.Plug.GraphiQL, schema: AppWeb.Schema.Schema
   end
 
-  #non auth routes
+  # non auth routes
   scope "/api/v1", AppWeb, as: :api_v1 do
     pipe_through :api
 
@@ -46,14 +46,13 @@ defmodule AppWeb.Router do
     post "/session/renew", SessionController, :renew
   end
 
-  #auth routes
+  # auth routes
   scope "/api/v1", AppWeb do
     pipe_through [:api, :api_protected]
 
     # Your protected API endpoints here
     resources "/investment-plan", InvestmentPlanController
   end
-
 
   # Other scopes may use custom stacks.
   # scope "/api", AppWeb do

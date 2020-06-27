@@ -30,6 +30,6 @@ defmodule AppWeb.InvestmentPlanView do
       inserted_at: investment_plan.inserted_at,
       updated_at: investment_plan.updated_at,
       duration: investment_plan.duration
-      }
+    }
   end
 end

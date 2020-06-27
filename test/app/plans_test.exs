@@ -30,7 +30,9 @@ defmodule App.PlansTest do
     end
 
     test "create_investment_plan/1 with valid data creates a investment_plan" do
-      assert {:ok, %InvestmentPlan{} = investment_plan} = Plans.create_investment_plan(@valid_attrs)
+      assert {:ok, %InvestmentPlan{} = investment_plan} =
+               Plans.create_investment_plan(@valid_attrs)
+
       assert investment_plan.description == "some description"
       assert investment_plan.name == "some name"
     end
@@ -41,14 +43,20 @@ defmodule App.PlansTest do
 
     test "update_investment_plan/2 with valid data updates the investment_plan" do
       investment_plan = investment_plan_fixture()
-      assert {:ok, %InvestmentPlan{} = investment_plan} = Plans.update_investment_plan(investment_plan, @update_attrs)
+
+      assert {:ok, %InvestmentPlan{} = investment_plan} =
+               Plans.update_investment_plan(investment_plan, @update_attrs)
+
       assert investment_plan.description == "some updated description"
       assert investment_plan.name == "some updated name"
     end
 
     test "update_investment_plan/2 with invalid data returns error changeset" do
       investment_plan = investment_plan_fixture()
-      assert {:error, %Ecto.Changeset{}} = Plans.update_investment_plan(investment_plan, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               Plans.update_investment_plan(investment_plan, @invalid_attrs)
+
       assert investment_plan == Plans.get_investment_plan!(investment_plan.id)
     end
 
